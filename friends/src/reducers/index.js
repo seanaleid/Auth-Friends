@@ -1,5 +1,7 @@
 import { 
     START_FETCHING, 
+    FETCH_SUCCESS, 
+    FETCH_FAILURE,
  } from "../actions";
 
 const initialState = {
@@ -17,6 +19,19 @@ const reducer = ( state = initialState, action ) => {
                 isFetching: true,
                 error: '',
             };
+        case FETCH_SUCCESS:
+            return {
+                ...state,
+                isFetching: false,
+                error: '',
+                smurfs: action.payload
+            };
+        case FETCH_FAILURE:
+            return {
+                ...state,
+                error: action.payload,
+                isFetching: false
+            }
         default:
             return state;
     }
