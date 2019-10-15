@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react"
 import { axiosWithAuth } from "./axiosWithAuth"
 
-
+import AddFriendForm from "./AddFriendForm"
 import FriendCard from "./FriendCard"
 
 const FriendsList = () => {
     const [friends, setFriends] = useState([])
+    
 
     useEffect(() => {
         axiosWithAuth()
@@ -14,9 +15,12 @@ const FriendsList = () => {
             .catch(err => console.log("FriendsList.js axiosWithAuth has an error", err.response))
     }) 
 
+   
+
     return(
         <div className="container">
             <div className="friend-routes">
+                <AddFriendForm />
                 {friends.map((friend, index) => (
                     <FriendCard key={index} friend={friend} />
                 ))}
