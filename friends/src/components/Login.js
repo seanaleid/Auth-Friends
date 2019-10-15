@@ -1,14 +1,18 @@
 import React, { useState } from "react";
-import { connect } from "react-redux";
 
 // import { axiosWithAuth } from "../actions";
-import { axiosWithAuth } from "./axiosWithAuth";
+import { axiosWithAuth } from "./axiosWithAuth"
+
+// react-router-dom
+import { Link } from "react-router-dom"
 
 export const Login = props => {
     console.log(props);
     const [ user, setUser] = useState({
-        username: "",
-        password: ""
+        credentials: {
+            username: "",
+            password: ""
+        }
     })
     
     const handleChange = e => {
@@ -23,7 +27,7 @@ export const Login = props => {
     const login = e => {
         e.preventDefault();
         axiosWithAuth()
-            .post('login', user.credentials )
+            .post('/api/login', user.credentials )
             .then(res => {
                 localStorage.setItem('token', res.data.payload)
                 user.props.history.push('/protected');
@@ -34,14 +38,14 @@ export const Login = props => {
 
     return (
         <div className="login-container">
-            <form className="login-form" onSumbit={login}>
+            <form className="login-form" onSubmit={login}>
                 <input 
                     type="text"
                     name="username"
                     label="username"
                     placeholder="username"
                     value={props.username}
-                    onchange={handleChange}
+                    onChange={handleChange}
                     className="input"
                 />
                 <input 
@@ -50,10 +54,10 @@ export const Login = props => {
                     label="password"
                     placeholder="password"
                     value={props.password}
-                    onchange={handleChange}
+                    onChange={handleChange}
                     className="input"
                 />
-                <button className="login-button">Login</button>
+                <button className="login-button" >Login</button>
             </form>
         </div>
     )

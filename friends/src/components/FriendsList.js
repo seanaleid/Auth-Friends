@@ -1,24 +1,29 @@
-import React from "react";
+import React, { useState, useEffect } from "react"
+import { axiosWithAuth } from "./axiosWithAuth"
 
-// redux - connect to the store
-// import { connect } from "react-redux";
 
-// import actions
-// import { fetchFriends } from "../actions";
-
-// import components
+import FriendCard from "./FriendCard"
 
 const FriendsList = () => {
+    const [friends, setFriends] = useState([])
 
+    useEffect(() => {
+        axiosWithAuth()
+            .get("/api/friends")
+            .then(res => setFriends(res.data))
+            .catch(err => console.log("FriendsList.js axiosWithAuth has an error", err.response))
+    }) 
 
     return(
-        <div className={"container"}>
+        <div className="container">
             <div className="friend-routes">
+                {friends.map((friend, index) => (
+                    <FriendCard key={index} friend={friend} />
+                ))}
                 <p>create friend</p>
                 <p>update friend</p>
                 <p>delete friend</p>
             </div>
-            <h1>Friends go here</h1>
         </div>
     )
 }

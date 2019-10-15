@@ -5,17 +5,13 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 // configure store
-import { Provider } from "react-redux";
-import configureStore from "./configureStore";
+// import { Provider } from "react-redux";
+// import configureStore from "./configureStore";
 
-const store = configureStore();
-console.log(`Index.js store console log`, store);
+// const store = configureStore();
+// console.log(`Index.js store console log`, store);
 
-ReactDOM.render(
-    <Provider store={store}>
-        <App />
-    </Provider>, 
-    document.getElementById('root'));
+ReactDOM.render(<App />, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
