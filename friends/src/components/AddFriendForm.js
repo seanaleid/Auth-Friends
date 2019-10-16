@@ -25,7 +25,7 @@ const AddFriendForm = () => {
 
     return(
         <div className="add-friend-form">
-            <h1 className="add-friend-form">Add Friend</h1>
+            <h1 className="add-friend-title">Add Friend</h1>
             <form className="input-name" id="input-name" onSubmit={submitHandler}>
                 <input 
                     type="text" 

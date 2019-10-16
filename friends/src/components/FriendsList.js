@@ -19,14 +19,15 @@ const FriendsList = () => {
 
     return(
         <div className="container">
-            <div className="friend-routes">
-                <AddFriendForm />
-                {friends.map((friend, index) => (
-                    <FriendCard key={index} friend={friend} />
-                ))}
-                <p>create friend</p>
-                <p>update friend</p>
-                <p>delete friend</p>
+            <div className="friend-container">
+                <div className="add-friend-form-div">
+                    <AddFriendForm />
+                </div>
+                <div ClassName="friend-card-map">
+                    {friends.map((friend, index) => (
+                        <FriendCard key={index} friend={friend} />
+                    ))}
+                </div>
             </div>
         </div>
     )
