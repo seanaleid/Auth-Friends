@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { axiosWithAuth } from "./axiosWithAuth"
 
 
-const AddFriendForm = (props) => {
+const AddFriendForm = () => {
     const [addFriends, setAddFriends] = useState({
         name: "",
         age: "",
@@ -11,10 +11,12 @@ const AddFriendForm = (props) => {
 
     const submitHandler = e => {
         e.preventDefault();
-        axiosWithAuth
+
+        axiosWithAuth()
             .post("/api/friends", addFriends)
             .then(res => setAddFriends(res.data))
-            .catch(err => console.log(`post friends error`, err.response))
+            .catch(err => console.log(`post friends error`, err.response));
+            document.getElementById("input-name").reset();
     }
 
     const inputHandler = e => {
@@ -24,13 +26,13 @@ const AddFriendForm = (props) => {
     return(
         <div className="add-friend-form">
             <h1 className="add-friend-form">Add Friend</h1>
-            <form className="input-name">
+            <form className="input-name" id="input-name" onSubmit={submitHandler}>
                 <input 
                     type="text" 
                     name="name" 
                     label="name" 
                     placeholder="Name"
-                    value={props.name}
+                    value={addFriends.name}
                     onChange={inputHandler}
                     className="input"
                 />
@@ -39,7 +41,7 @@ const AddFriendForm = (props) => {
                     name="age" 
                     label="age" 
                     placeholder="Age"
-                    value={props.age}
+                    value={addFriends.age}
                     onChange={inputHandler}
                     className="input"
                 />
@@ -48,11 +50,11 @@ const AddFriendForm = (props) => {
                     name="email" 
                     label="email" 
                     placeholder="email"
-                    value={props.email}
+                    value={addFriends.email}
                     onChange={inputHandler}
                     className="input"
                 />
-                <button className="add-friend-button" onClick={submitHandler}>Add Friend</button>
+                <button className="add-friend-button">Add Friend</button>
             </form>
         </div>
     )
