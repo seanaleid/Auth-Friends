@@ -1,0 +1,41 @@
+html {
+  background-color: red;
+}
+
+.App {
+  text-align: center;
+}
+
+
+ul {
+  display: flex;
+  justify-content: flex-end;
+  margin: 0 0 36px;
+  padding: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+li {
+  list-style: none;
+  margin-right: 6px;
+  color: #204963;
+}
+
+.container {
+  margin: 0 auto;
+  border: 5px solid blue;
+  padding: 50px;
+}
+
+.friend-container {
+  margin: 0 auto;
+  display: flex; 
+}
+
+.friend-card {
+  border: 5px solid blue;
+}
+
+.add-friend-form {
+  border: 5px solid blue;
+}
